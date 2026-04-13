@@ -1,13 +1,14 @@
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+import matplotlib.pyplot as plt
 
 # ======================
-# DATA PATH
+# DATASET PATH
 # ======================
 train_path = "data/train"
 
 # ======================
-# DATA GENERATOR
+# DATA PREPROCESSING
 # ======================
 datagen = ImageDataGenerator(
     rescale=1./255,
@@ -31,9 +32,9 @@ val_data = datagen.flow_from_directory(
 )
 
 # ======================
-# MODEL
+# CNN MODEL
 # ======================
-model = tf.keras.models.Sequential([
+model = tf.keras.Sequential([
     tf.keras.layers.Conv2D(32, (3,3), activation='relu', input_shape=(150,150,3)),
     tf.keras.layers.MaxPooling2D(2,2),
 
@@ -46,12 +47,11 @@ model = tf.keras.models.Sequential([
     tf.keras.layers.Flatten(),
     tf.keras.layers.Dense(128, activation='relu'),
     tf.keras.layers.Dropout(0.5),
-
-    tf.keras.layers.Dense(3, activation='softmax')  # 3 classes
+    tf.keras.layers.Dense(3, activation='softmax')
 ])
 
 # ======================
-# COMPILE
+# COMPILE MODEL
 # ======================
 model.compile(
     optimizer='adam',
@@ -60,7 +60,7 @@ model.compile(
 )
 
 # ======================
-# TRAIN
+# TRAIN MODEL
 # ======================
 history = model.fit(
     train_data,
@@ -73,4 +73,15 @@ history = model.fit(
 # ======================
 model.save("models/model.h5")
 
-print("✅ Training Complete!")
+print("✅ Model Training Complete")
+
+# ======================
+# ACCURACY GRAPH
+# ======================
+plt.plot(history.history['accuracy'])
+plt.plot(history.history['val_accuracy'])
+plt.title('Model Accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.legend(['Train', 'Validation'])
+plt.show()

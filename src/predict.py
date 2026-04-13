@@ -2,17 +2,18 @@ import cv2
 import numpy as np
 from tensorflow.keras.models import load_model
 
-# Load trained model
+# Load model
 model = load_model("models/model.h5")
 
-# Class labels (must match folder names EXACTLY)
+# Classes (must match folder names)
 classes = ["covid", "normal", "pneumonia"]
 
-def predict_image(path):
-    img = cv2.imread(path)
+def predict_image(image_path):
+
+    img = cv2.imread(image_path)
 
     if img is None:
-        print("❌ Image not found. Check path!")
+        print("❌ Image not found")
         return None
 
     img = cv2.resize(img, (150,150))

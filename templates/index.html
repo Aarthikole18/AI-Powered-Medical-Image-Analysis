@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Medical Image Analysis</title>
+</head>
+
+<body style="font-family: Arial; text-align: center; background-color: #f2f2f2;">
+
+    <h1 style="color: #333;">🧠 AI Medical Image Analysis</h1>
+    <p>Upload a chest X-ray image and get AI prediction</p>
+
+    <form action="/predict" method="post" enctype="multipart/form-data">
+
+        <input type="file" name="file" required>
+
+        <br><br>
+
+        <button type="submit" style="
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        ">
+            Predict
+        </button>
+
+    </form>
+
+    <br>
+
+    {% if prediction %}
+        <h2 style="color: blue;">
+            Prediction: {{ prediction }}
+        </h2>
+    {% endif %}
+
+</body>
+</html>
