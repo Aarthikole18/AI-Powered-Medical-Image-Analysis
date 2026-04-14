@@ -80,7 +80,13 @@ Model predicts disease from input image.
 
 Displays image with predicted label.
 
----
+🎥 Demo Video
+
+Watch the working demo here:
+Live Demo:https://huggingface.co/spaces/aarthik18/medical-ai-app
+
+Watch the screen recording here: (upload to Drive and paste link)
+https://drive.google.com/file/d/1tbqwUc-YuJvBuJc6yEdOdimTRzgaWZqW/view?usp=sharing
 
 ## ▶️ How to Run
 
